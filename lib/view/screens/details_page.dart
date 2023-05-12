@@ -22,7 +22,8 @@ class _DetailPageState extends State<DetailPage> {
         setState(() {
           q = i;
         });
-        //Global.history = widget.data[i]['quote'];
+        // int totalHistory = Global.history.length;
+        // Global.history[totalHistory + 1]['quote'] = widget.data[i]['quote'];
         changeTime();
       });
     }

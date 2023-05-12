@@ -155,5 +155,5 @@ class Global {
     },
   ];
 
-  static List history = [];
+  static List<dynamic> history = [];
 }

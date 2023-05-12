@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               ),
               title: const Text('History'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, "history_page");
               },
             ),
           ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pr2_quote_app/view/screens/details_page.dart';
+import 'package:pr2_quote_app/view/screens/history_page.dart';
 import 'package:pr2_quote_app/view/screens/home_page.dart';
 
 void main() {
@@ -11,10 +12,8 @@ void main() {
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
       routes: {
-        'detail_page': (context) => const DetailPage(
-              title: '',
-              data: [],
-            ),
+        'detail_page': (context) => const DetailPage(title: '', data: []),
+        'history_page': (context) => const HistoryPage(),
       },
     ),
   );
