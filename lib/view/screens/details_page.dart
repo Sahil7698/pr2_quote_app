@@ -4,13 +4,39 @@ import '../../res/quote_list.dart';
 
 class DetailPage extends StatefulWidget {
   final String title;
-  const DetailPage({Key? key, required this.title}) : super(key: key);
+  final List data;
+  const DetailPage({
+    Key? key,
+    required this.title,
+    required this.data,
+  }) : super(key: key);
 
   @override
   State<DetailPage> createState() => _DetailPageState();
 }
 
 class _DetailPageState extends State<DetailPage> {
+  int q = 0;
+
+  void changeTime() {
+    for (int i = 0; i < widget.data.length; i++) {
+      Future.delayed(const Duration(seconds: 10), () {
+        setState(() {
+          q = i;
+          changeTime();
+          Global.history = widget.data[q]['quote'];
+        });
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    changeTime();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +67,7 @@ class _DetailPageState extends State<DetailPage> {
                 children: List.generate(
                   1,
                   (index) => Text(
-                    "${Global.alone[1]['quote']}",
+                    "${widget.data[q]['quote']}",
                     style: const TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.bold,

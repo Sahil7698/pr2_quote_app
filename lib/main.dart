@@ -11,7 +11,10 @@ void main() {
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
       routes: {
-        'detail_page': (context) => const DetailPage(title: ''),
+        'detail_page': (context) => const DetailPage(
+              title: '',
+              data: [],
+            ),
       },
     ),
   );

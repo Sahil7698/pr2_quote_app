@@ -154,4 +154,6 @@ class Global {
       'quote': 'Time is a great healer, but a poor beautician.',
     },
   ];
+
+  static List history = [];
 }

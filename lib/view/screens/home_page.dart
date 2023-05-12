@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pr2_quote_app/view/screens/details_page.dart';
 
+import '../../res/quote_list.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -72,7 +74,10 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DetailPage(title: "Alone"),
+                        builder: (context) => DetailPage(
+                          title: "Alone",
+                          data: Global.alone,
+                        ),
                       ),
                     );
                   },
@@ -87,7 +92,10 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DetailPage(title: "Angry"),
+                        builder: (context) => DetailPage(
+                          title: "Angry",
+                          data: Global.angry,
+                        ),
                       ),
                     );
                   },
@@ -109,7 +117,10 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DetailPage(title: "Happy"),
+                        builder: (context) => DetailPage(
+                          title: "Happy",
+                          data: Global.happy,
+                        ),
                       ),
                     );
                   },
@@ -124,8 +135,10 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            const DetailPage(title: "Attitude"),
+                        builder: (context) => DetailPage(
+                          title: "Attitude",
+                          data: Global.attitude,
+                        ),
                       ),
                     );
                   },
@@ -147,7 +160,10 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DetailPage(title: "Life"),
+                        builder: (context) => DetailPage(
+                          title: "Life",
+                          data: Global.life,
+                        ),
                       ),
                     );
                   },
@@ -162,7 +178,10 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const DetailPage(title: "Time"),
+                        builder: (context) => DetailPage(
+                          title: "Time",
+                          data: Global.time,
+                        ),
                       ),
                     );
                   },
@@ -177,21 +196,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     showDialog(
-      //       context: context,
-      //       builder: (context) => AlertDialog(
-      //         title: const Text("Add Data"),
-      //         content: Form(
-      //           key: addKey,
-      //           child: TextFormField(),
-      //         ),
-      //       ),
-      //     );
-      //   },
-      //   child: const Icon(Icons.add),
-      // ),
     );
   }
 
