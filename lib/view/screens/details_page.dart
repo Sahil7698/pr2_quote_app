@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../res/quote_list.dart';
-
 class DetailPage extends StatefulWidget {
   final String title;
   final List data;
@@ -23,9 +21,9 @@ class _DetailPageState extends State<DetailPage> {
       Future.delayed(const Duration(seconds: 10), () {
         setState(() {
           q = i;
-          changeTime();
-          Global.history = widget.data[q]['quote'];
         });
+        //Global.history = widget.data[i]['quote'];
+        changeTime();
       });
     }
   }
