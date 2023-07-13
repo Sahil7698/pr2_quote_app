@@ -10,8 +10,9 @@ void main() {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      initialRoute: '/',
       routes: {
+        '/': (context) => const HomePage(),
         'detail_page': (context) => const DetailPage(title: '', data: []),
         'history_page': (context) => const HistoryPage(),
       },
