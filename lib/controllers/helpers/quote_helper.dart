@@ -2,6 +2,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../model/quote_model.dart';
+import '../../res/quote_list.dart';
 
 class DBHelper {
   DBHelper._();
@@ -19,29 +20,36 @@ class DBHelper {
       version: 1,
       onCreate: (Database db, int ver) async {
         String query =
-            "CREATE TABLE IF NOT EXISTS tbl_quote(Id INTEGER PRIMARY KEY AUTOINCREMENT,quote TEXT NOT NULL,);";
+            "CREATE TABLE IF NOT EXISTS tbl_quote(Id INTEGER PRIMARY KEY AUTOINCREMENT,quote TEXT NOT NULL,type TEXT NOT NULL);";
         await db.execute(query);
       },
     );
   }
 
-  Future<int> insertRecord({required Quote quote}) async {
+  Future<int> insertRecord() async {
     await initDB();
 
-    String query = "INSERT INTO tbl_quote(id,quote) VALUES(?,?);";
-    List args = [];
+    String query = "INSERT INTO tbl_quote(Id,quote,type) VALUES(?,?,?);";
+    List args = [
+      Global.alone.length,
+      Global.angry.length,
+      Global.happy.length,
+      Global.attitude.length,
+      Global.life.length,
+      Global.time.length,
+    ];
 
     return await db!.rawInsert(query, args);
   }
 
-  Future<List<Quote>> getAllRecords() async {
+  Future<List<Quote>> getAllRecords({required String type}) async {
     await initDB();
-    String query = "SELECT * FROM tbl_quote;";
+    String query = "SELECT * FROM tbl_quote WHERE type='$type';";
 
     List<Map<String, dynamic>> allRecords = await db!.rawQuery(query);
 
     List<Quote> allQuotes =
-        allRecords.map((e) => Quote.fromMap(data: e)).toList();
+    allRecords.map((e) => Quote.fromMap(data: e)).toList();
     return allQuotes;
   }
 }
