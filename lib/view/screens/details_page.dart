@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../controllers/helpers/quote_helper.dart';
+import '../../model/quote_model.dart';
 
 class DetailPage extends StatefulWidget {
   final String title;
   final List data;
-
   const DetailPage({
     Key? key,
     required this.title,
@@ -20,11 +20,12 @@ class _DetailPageState extends State<DetailPage> {
   int q = 1;
 
   void changeTime() {
-    for (int i = 0; i < widget.data.length; i++) {
+    for (int i = 1; i < 6; i++) {
       Future.delayed(const Duration(seconds: 10), () {
         setState(() {
           q = i;
         });
+
         changeTime();
       });
     }
@@ -34,7 +35,6 @@ class _DetailPageState extends State<DetailPage> {
   void initState() {
     super.initState();
     changeTime();
-    DBHelper.dbHelper.getAllRecords(type: widget.title);
   }
 
   @override
@@ -45,7 +45,8 @@ class _DetailPageState extends State<DetailPage> {
         leading: GestureDetector(
             onTap: () {
               Navigator.of(context).pop();
-            }, child: const Icon(Icons.arrow_back_ios_new)),
+            },
+            child: const Icon(Icons.arrow_back_ios_new)),
         title: Text(
           widget.title,
           style: const TextStyle(
@@ -62,36 +63,46 @@ class _DetailPageState extends State<DetailPage> {
                 "${snapShot.hasError}",
               );
             } else if (snapShot.hasData) {
-              var data = snapShot.data;
-              return Padding(
-                padding: const EdgeInsets.all(15),
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 700,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.red.shade300,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: SingleChildScrollView(
-                    child: Padding(
+              List<Quote> data = snapShot.data as List<Quote>;
+              return (data == null || data.isEmpty)
+                  ? const Center(
+                      child: Text(
+                        "No Data Available...",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                        ),
+                      ),
+                    )
+                  : Padding(
                       padding: const EdgeInsets.all(15),
-                      child: Column(
-                        children: List.generate(
-                          1,
-                              (index) => Text(
-                            data![q].quote,
-                            style: const TextStyle(
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold,
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 700,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.red.shade300,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: SingleChildScrollView(
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                Text(
+                                  data[q].quote,
+                                  style: const TextStyle(
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ).toList(),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              );
+                    );
             }
             return const Center(child: CircularProgressIndicator());
           }),
