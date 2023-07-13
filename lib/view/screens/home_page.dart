@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pr2_quote_app/controllers/helpers/quote_helper.dart';
-import 'package:pr2_quote_app/view/screens/details_page.dart';
+import 'package:quote_app/controllers/helpers/quote_helper.dart';
 
 import '../../res/quote_list.dart';
+import 'details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,14 +12,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final GlobalKey<FormState> addKey = GlobalKey<FormState>();
+
+  void insertAllRecord() async {
+    for (int i = 0; i < Global.allQuotes.length; i++) {
+      await DBHelper.dbHelper.insertRecord(
+        quote: Global.allQuotes[i]['quote'],
+        type: Global.allQuotes[i]['type'],
+      );
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    DBHelper.dbHelper.insertRecord();
-
+    insertAllRecord();
   }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -83,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
                           title: "alone",
-                          data: Global.alone,
+                          data: Global.allQuotes,
                         ),
                       ),
                     );
@@ -101,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
                           title: "angry",
-                          data: Global.angry,
+                          data: Global.allQuotes,
                         ),
                       ),
                     );
@@ -126,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
                           title: "happy",
-                          data: Global.happy,
+                          data: Global.allQuotes,
                         ),
                       ),
                     );
@@ -144,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
                           title: "attitude",
-                          data: Global.attitude,
+                          data: Global.allQuotes,
                         ),
                       ),
                     );
@@ -169,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
                           title: "life",
-                          data: Global.life,
+                          data: Global.allQuotes,
                         ),
                       ),
                     );
@@ -187,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
                           title: "time",
-                          data: Global.time,
+                          data: Global.allQuotes,
                         ),
                       ),
                     );
