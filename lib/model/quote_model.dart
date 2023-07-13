@@ -1,7 +1,7 @@
 class Quote {
   int id;
-  late final String quote;
-  late final String type;
+  String quote;
+  String type;
 
   Quote({
     required this.id,
@@ -12,7 +12,7 @@ class Quote {
   factory Quote.fromMap({required Map<String, dynamic> data}) {
     return Quote(
       id: data['Id'],
-      quote: data['Name'],
+      quote: data['quote'],
       type: data['type'],
     );
   }
