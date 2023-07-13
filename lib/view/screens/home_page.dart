@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pr2_quote_app/controllers/helpers/quote_helper.dart';
 import 'package:pr2_quote_app/view/screens/details_page.dart';
 
 import '../../res/quote_list.dart';
@@ -12,7 +13,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<FormState> addKey = GlobalKey<FormState>();
+
   @override
+  void initState() {
+    super.initState();
+    DBHelper.dbHelper.insertRecord();
+
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -75,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
-                          title: "Alone",
+                          title: "alone",
                           data: Global.alone,
                         ),
                       ),
@@ -93,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
-                          title: "Angry",
+                          title: "angry",
                           data: Global.angry,
                         ),
                       ),
@@ -118,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
-                          title: "Happy",
+                          title: "happy",
                           data: Global.happy,
                         ),
                       ),
@@ -136,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
-                          title: "Attitude",
+                          title: "attitude",
                           data: Global.attitude,
                         ),
                       ),
@@ -161,7 +168,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
-                          title: "Life",
+                          title: "life",
                           data: Global.life,
                         ),
                       ),
@@ -179,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
-                          title: "Time",
+                          title: "time",
                           data: Global.time,
                         ),
                       ),
