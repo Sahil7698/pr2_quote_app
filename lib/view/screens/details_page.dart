@@ -44,7 +44,7 @@ class _DetailPageState extends State<DetailPage> {
         centerTitle: true,
         leading: GestureDetector(
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.pop(context);
             },
             child: const Icon(Icons.arrow_back_ios_new)),
         title: Text(
